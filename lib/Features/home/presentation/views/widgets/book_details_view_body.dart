@@ -1,5 +1,6 @@
 import 'package:bookly_app/Features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/custom_book_image.dart';
+import 'package:bookly_app/core/widgets/custom_btn.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/styles.dart';
@@ -47,9 +48,52 @@ class BookDetailsViewBody extends StatelessWidget {
               const BookRating(
                 mainAxisAlignment: MainAxisAlignment.center,
               ),
+              const SizedBox(
+                height: 30,
+              ),
+              const BooksAction(),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class BooksAction extends StatelessWidget {
+  const BooksAction({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: CustomButton(
+              text: "19.99\$",
+              backroundColor: Colors.white,
+              textColor: Colors.black,
+              onPressed: () {},
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                bottomLeft: Radius.circular(16),
+              ),
+            ),
+          ),
+          Expanded(
+            child: CustomButton(
+              text: "Free Preview",
+              backroundColor: const Color(0xFFEF8262),
+              onPressed: () {},
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(16),
+                bottomRight: Radius.circular(16),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
