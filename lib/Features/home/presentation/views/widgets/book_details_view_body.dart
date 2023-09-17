@@ -15,28 +15,35 @@ class BookDetailsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            children: [
-              CustomBookDetailsAppBar(),
-              SizedBox(
-                height: 40,
+    return const CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                children: [
+                  CustomBookDetailsAppBar(),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  BookDetailsSection(),
+                  Expanded(
+                    child: SizedBox(
+                      height: 50,
+                    ),
+                  ),
+                  SimilarBookListViewSection(),
+                  SizedBox(
+                    height: 40,
+                  ),
+                ],
               ),
-              BookDetailsSection(),
-              SizedBox(
-                height: 50,
-              ),
-              SimilarBookListViewSection(),
-              SizedBox(
-                height: 40,
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        )
+      ],
     );
   }
 }
