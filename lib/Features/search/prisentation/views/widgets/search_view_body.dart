@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'custom_search_text_field.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});
@@ -14,34 +17,6 @@ class SearchViewBody extends StatelessWidget {
           ),
           CustomSearchTextField(),
         ],
-      ),
-    );
-  }
-}
-
-class CustomSearchTextField extends StatelessWidget {
-  const CustomSearchTextField({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: "Search",
-        suffixIcon: const Icon(
-          Icons.search,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.white,
-          ),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.white,
-          ),
-          borderRadius: BorderRadius.circular(20),
-        ),
       ),
     );
   }
