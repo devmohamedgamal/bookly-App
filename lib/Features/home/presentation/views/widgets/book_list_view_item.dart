@@ -9,7 +9,8 @@ import '../../../../../core/utils/styles.dart';
 import 'book_rating.dart';
 
 class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key});
+  const BookListViewItem({super.key, required this.imageUrl});
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +26,9 @@ class BookListViewItem extends StatelessWidget {
             width: 60.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.r),
-              image: const DecorationImage(
-                image: AssetImage(
-                  AssetsManger.book_1,
+              image:  DecorationImage(
+                image: NetworkImage(
+                  imageUrl,
                 ),
                 fit: BoxFit.fill,
               ),

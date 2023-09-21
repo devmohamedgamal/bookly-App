@@ -19,6 +19,7 @@ class SimilarBooksListView extends StatelessWidget {
             child: CustomBookImage(
               width: 75,
               height: 80,
+              imageUrl: "https://www.shoroukbookstores.com/images/Books/original/9781847941831.jpg",
             ),
           );
         },

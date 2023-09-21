@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomBookImage extends StatelessWidget {
-  const CustomBookImage({super.key, this.height = 200, this.width = 135});
+  const CustomBookImage({super.key, this.height = 200, this.width = 135,this.imageUrl});
   final double height, width;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,9 @@ class CustomBookImage extends StatelessWidget {
       width: width.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
-        image: const DecorationImage(
-          image: AssetImage(
-            AssetsManger.book_1,
+        image: DecorationImage(
+          image: NetworkImage(
+            imageUrl ?? "https://www.shoroukbookstores.com/images/Books/original/9781847941831.jpg",
           ),
           fit: BoxFit.fill,
         ),

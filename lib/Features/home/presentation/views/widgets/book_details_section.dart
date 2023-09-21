@@ -15,6 +15,7 @@ class BookDetailsSection extends StatelessWidget {
         const CustomBookImage(
           height: 225,
           width: 150,
+          imageUrl: "https://www.shoroukbookstores.com/images/Books/original/9781847941831.jpg",
         ),
         const SizedBox(
           height: 40,

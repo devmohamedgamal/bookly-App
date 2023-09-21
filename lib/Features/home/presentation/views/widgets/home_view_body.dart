@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/utils/styles.dart';
-import 'best_seller_list_view.dart';
-import 'best_seller_list_view_item.dart';
+import 'newest_books_list_view.dart';
+import 'book_list_view_item.dart';
 import 'custom_app_bar.dart';
 import 'featured_list_view.dart';
 
@@ -39,7 +39,7 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         const SliverToBoxAdapter(
-          child: BestSellerListView(),
+          child: NewestBooksListView(),
         ),
       ],
     );

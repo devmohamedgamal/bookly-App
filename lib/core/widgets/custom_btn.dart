@@ -27,6 +27,7 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: borderRadius,
         ),
+        foregroundColor: Colors.grey,
       ),
       child: Text(
         text,
