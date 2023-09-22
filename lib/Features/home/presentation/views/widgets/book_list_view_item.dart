@@ -1,3 +1,4 @@
+import 'package:bookly_app/Features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,10 +8,11 @@ import '../../../../../constants.dart';
 import '../../../../../core/utils/assets_manger.dart';
 import '../../../../../core/utils/styles.dart';
 import 'book_rating.dart';
+import 'custom_book_image.dart';
 
 class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key, required this.imageUrl});
-  final String imageUrl;
+  const BookListViewItem({super.key, required this.bookModel});
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +23,14 @@ class BookListViewItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 80.h,
-            width: 60.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.r),
-              image:  DecorationImage(
-                image: NetworkImage(
-                  imageUrl,
-                ),
-                fit: BoxFit.fill,
-              ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: CustomBookImage(
+              height: 80,
+              width: 60,
+              imageUrl: bookModel.volumeInfo!.imageLinks == null
+                  ? AssetsManger.errNetworkImage
+                  : bookModel.volumeInfo!.imageLinks!.thumbnail,
             ),
           ),
           const SizedBox(
@@ -46,7 +45,7 @@ class BookListViewItem extends StatelessWidget {
                   SizedBox(
                     width: 200.w,
                     child: Text(
-                      "Make Time",
+                      bookModel.volumeInfo!.title!,
                       style: Styles.textStyle22.copyWith(
                         fontFamily: kGtSecteraFine,
                       ),
@@ -57,8 +56,8 @@ class BookListViewItem extends StatelessWidget {
                   const SizedBox(
                     height: 3,
                   ),
-                  const Text(
-                    "Mohamed Gamal",
+                  Text(
+                    bookModel.volumeInfo!.authors!.first,
                     style: Styles.textStyle14,
                   ),
                   const SizedBox(
@@ -67,14 +66,19 @@ class BookListViewItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "19.99 \$",
+                        bookModel.saleInfo!.listPrice == null
+                            ? "Free"
+                            : "${bookModel.saleInfo!.listPrice!.amount} EGP",
                         style: Styles.textStyle22
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
                         width: 20,
                       ),
-                      const BookRating(),
+                      BookRating(
+                        rating: bookModel.volumeInfo!.averageRating ?? 0,
+                        ratingCount: bookModel.volumeInfo!.ratingsCount ?? 0,
+                      ),
                     ],
                   ),
                 ],

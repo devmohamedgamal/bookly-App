@@ -13,11 +13,13 @@ class SearchResultListView extends StatelessWidget {
       itemCount: 15,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return const Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            child: BookListViewItem(
-              imageUrl: AssetsManger.errNetworkImage,
-            ));
+        return  Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child:Container() ,
+          //  BookListViewItem(
+          //   imageUrl: AssetsManger.errNetworkImage,
+          // ),
+        );
       },
     );
   }
