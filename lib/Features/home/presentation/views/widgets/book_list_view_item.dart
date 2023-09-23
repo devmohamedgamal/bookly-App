@@ -18,7 +18,7 @@ class BookListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kBookDetialsView);
+        GoRouter.of(context).push(AppRouter.kBookDetialsView,extra: bookModel);
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
