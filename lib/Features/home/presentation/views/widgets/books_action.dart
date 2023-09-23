@@ -1,6 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../../core/utils/Function/launch_url.dart';
 import '../../../../../core/widgets/custom_btn.dart';
 import '../../../data/models/book_model/book_model.dart';
 
@@ -28,13 +31,10 @@ class BooksAction extends StatelessWidget {
           ),
           Expanded(
             child: CustomButton(
-              text: "Free Preview",
+              text: getText(bookModel),
               backroundColor: const Color(0xFFEF8262),
               onPressed: () async {
-                Uri url = Uri.parse(bookModel.volumeInfo!.previewLink!);
-                if (await canLaunchUrl(url)) {
-                  await launchUrl(url);
-                }
+                customLaunchUrl(context,bookModel.volumeInfo!.previewLink!);
               },
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(16),
@@ -45,5 +45,13 @@ class BooksAction extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  getText(BookModel bookMedl) {
+    if (bookModel.volumeInfo!.previewLink == null) {
+      return "Not Avalibal";
+    } else {
+      return "Free Preview";
+    }
   }
 }
