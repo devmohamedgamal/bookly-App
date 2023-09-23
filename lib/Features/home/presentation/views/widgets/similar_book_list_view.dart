@@ -1,4 +1,5 @@
 import 'package:bookly_app/Features/home/presentation/manger/similar_books_cubit/similar_books_cubit.dart';
+import 'package:bookly_app/core/utils/assets_manger.dart';
 import 'package:bookly_app/core/widgets/custom_error_widget.dart';
 import 'package:bookly_app/core/widgets/custom_loading_indecator.dart';
 import 'package:flutter/material.dart';
@@ -18,16 +19,18 @@ class SimilarBooksListView extends StatelessWidget {
           return SizedBox(
             height: 100.h,
             child: ListView.builder(
-              itemCount: 20,
+              itemCount: state.books.length,
+              physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: CustomBookImage(
                     width: 75,
                     height: 80,
                     imageUrl:
-                        "https://www.shoroukbookstores.com/images/Books/original/9781847941831.jpg",
+                        state.books[index].volumeInfo!.imageLinks?.thumbnail ??
+                            AssetsManger.errNetworkImage,
                   ),
                 );
               },

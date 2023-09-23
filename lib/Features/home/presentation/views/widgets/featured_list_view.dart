@@ -3,7 +3,9 @@ import 'package:fade_shimmer/fade_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets_manger.dart';
 import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../../../core/widgets/custom_loading_indecator.dart';
@@ -26,12 +28,17 @@ class FeaturedBooksListView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
+                    child: GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).push(
+                          AppRouter.kBookDetialsView,
+                          extra: state.books[index],
+                        );
+                      },
                       child: CustomBookImage(
-                        imageUrl:
-                            state.books[index].volumeInfo!.imageLinks?.thumbnail ??
-                               AssetsManger.errNetworkImage,
+                        imageUrl: state.books[index].volumeInfo!.imageLinks
+                                ?.thumbnail ??
+                            AssetsManger.errNetworkImage,
                       ),
                     ),
                   );
