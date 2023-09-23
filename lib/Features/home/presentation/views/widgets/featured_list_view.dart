@@ -1,4 +1,5 @@
 import 'package:bookly_app/Features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
+import 'package:fade_shimmer/fade_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,10 +26,13 @@ class FeaturedBooksListView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: CustomBookImage(
-                      imageUrl: 
-                      state.books[index].volumeInfo!.imageLinks == null ? AssetsManger.errNetworkImage :
-                      state.books[index].volumeInfo!.imageLinks!.thumbnail,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: CustomBookImage(
+                        imageUrl:
+                            state.books[index].volumeInfo!.imageLinks?.thumbnail ??
+                               AssetsManger.errNetworkImage,
+                      ),
                     ),
                   );
                 }),
